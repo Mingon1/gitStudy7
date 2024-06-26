@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- travel.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="movie.MovieBean"><!-- 아무이름 빈파일과 상관없다 -->
+  	
+  	<select id="getMovieList" resultType="MyMovie">
+  		select * from movie 
+  		<if test="whatColumn == 'all'">
+  			where title like #{keyword} or genre like #{keyword} or grade  like #{keyword} or actor like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'grade'">
+  			where grade like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'actor'">
+  			where actor like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'genre'">
+  			where genre like #{keyword}
+  		</if>
+  		order by num desc
+  	</select>
+  	
+  	<select id="getTotalCount" resultType="int">
+  		select count(*) from movie
+  		<if test="whatColumn == 'all'">
+  			where genre like #{keyword} or grade  like #{keyword} or actor like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'grade'">
+  			where grade like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'actor'">
+  			where actor like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'genre'">
+  			where genre like #{keyword}
+  		</if>
+  	</select>
+  	
+  	<select id="getAllTotalCount" resultType="int">
+  		select count(*) from movie
+  		
+  	</select>
+  	
+  	<insert id="insertMovie">
+  		insert into movie values(mv_seq.nextval,#{title},#{continent},#{nation},#{genre},#{grade},#{actor})
+  	</insert>
+  	
+  	<delete id="deleteMovie">
+  		delete from movie where num = #{num}
+  	</delete>
+  	
+  	<select id="searchTitle" resultType="int">
+  		select count(*) from movie where upper(title) = upper(#{title})
+  	</select>
+  	
+  	<select id="getMovieByNum" resultType="MyMovie">
+  		select * from movie where num = #{num}
+  	</select>
+  	
+  	<update id="updateMovie">
+  	 	update movie set title = #{title}, continent = #{continent}, nation = #{nation}, genre = #{genre}, grade = #{grade}, actor = #{actor} where num = #{num} 
+  	</update>
+  	
+  	
+  	
+  </mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+			<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+			<property name="username" value="sqlid"/>
+			<property name="password" value="sqlpw"/>
+		</bean>
+		
+		
+		<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/movie/mybatis/SqlMapConfig.xml"/>
+		<property name="mapperLocations">
+			<value>classpath:/movie/mybatis/movie.xml</value>
+		</property>
+		</bean>
+		
+		<!-- 두번째 객체 정보를 여기에 넣는다
+		org.mybatis.spring.SqlSessionTemplate sqlSessionTemplate = new org.mybatis.spring.SqlSessionTemplate(sqlSessionFactoryBean); 
+		-->
+		<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg ref="sqlSessionFactoryBean"/>
+		</bean>		
+</beans>

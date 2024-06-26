@@ -1,0 +1,50 @@
+drop table movie;
+create table movie(
+	num number not null  primary key,
+	title varchar2(40) not null,
+	continent varchar2(20) not null,
+	nation varchar2(25) not null,
+	genre varchar2(80),
+	grade varchar2(5),
+	actor varchar2(100)
+);
+
+drop sequence mv_seq;
+
+create sequence mv_seq
+	increment by 1
+	start with 1 
+	minvalue 1
+	maxvalue 10000
+	nocache;
+
+insert into movie(num,title,continent,nation,genre,grade,actor)
+values(mv_seq.nextval,'외계인','아시아','한국','액션,판타지','15','류준열,김우빈,김태리');
+
+insert into movie(num,title,continent,nation,genre,grade,actor)
+values(mv_seq.nextval,'배트맨','아메리카','미국','코미디,판타지','15','로버트 패틴슨,폴 다노');
+
+insert into movie(num,title,continent,nation,genre,grade,actor)
+values(mv_seq.nextval,'슈퍼배드','아메리카','미국','코미디,판타지','12','로버트 패틴슨,폴 다노');
+
+insert into movie(num,title,continent,nation,genre,grade,actor)
+values(mv_seq.nextval,'어벤져스4','아메리카','미국','액션,판타지','15','로버트 다우니 주니어,크리스 헴스워스,톰 홀랜드');
+
+insert into movie(num,title,continent,nation,genre,grade,actor)
+values(mv_seq.nextval,'범죄도시','서울','한국','코미디,액션','15','마동석,이동휘');
+
+insert into movie(num,title,continent,nation,genre,grade,actor)
+values(mv_seq.nextval,'슈퍼맨','아메리카','미국','코미디,판타지,액션','15','로버트 패틴슨,폴 다노');
+
+
+
+commit;
+col num for 99
+col title for a10
+col continent for a6
+col nation for a8
+col genre for a20
+col grade for a3
+col actor for a25
+
+select * from movie;

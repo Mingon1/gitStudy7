@@ -1,0 +1,47 @@
+@RequestMapping
+
+@AutoWired
+@Qualifier
+
+@Controller
+
+@ModelAttribute
+
+@Valid
+
+@Component
+
+@Length
+
+@Pattern
+
+@NotNull
+
+@NotBlank
+
+@NotEmpty
+
+@Size
+
+@RequestParam
+
+@Override
+
+@WebServlet
+
+@WebInitParam
+
+@Service
+
+@ResponseBody
+
+<!-- 
+타입별 가능한 어노테이션
+type=text: @NotBlank  @NotEmpty
+type=checkbox: @NotBlank  @NotNull @NotEmpty
+type=radio: @NotBlank  @NotNull @NotEmpty 
+select=option: @NotBlank  @NotEmpty
+ -->
+====================================================
+
+
