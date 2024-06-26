@@ -36,13 +36,17 @@ public class MovieInsertController {
 	
 	@RequestMapping(value=command, method= RequestMethod.POST)
 	public ModelAndView insert(@ModelAttribute("movie") @Valid MovieBean movie, BindingResult result) {
-		
+				
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {
 			mav.setViewName(getPage);
 			return mav;
 		}
-		movieDao.insertMovie(movie);
+		
+		//kim 팀원이 수정
+		int cnt = movieDao.insertMovie(movie);
+		
+		
 		mav.setViewName(gotoPage);
 		return mav;
 	}
