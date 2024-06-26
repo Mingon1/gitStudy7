@@ -46,7 +46,7 @@ public class MovieInsertController {
 		//kim 팀원이 수정
 		int cnt = movieDao.insertMovie(movie);
 		
-		
+		// kim 브랜치에서 작업한다!!!
 		mav.setViewName(gotoPage);
 		return mav;
 	}
